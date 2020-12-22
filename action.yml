@@ -15,13 +15,17 @@ inputs:
     description: 'Output level. Available values are "debug" and "verbose". Use "debug,verbose" for using both of them'
     required: false
 runs:
-  using: "docker"
-  image: "Dockerfile"
-  env:
-    TARGETS: ${{ inputs.targets }}
-    BLACKLIST: ${{ inputs.blacklist-file }}
-    DISABLED: ${{ inputs.disabled-mutators }}
-    OUTPUT: ${{ inputs.output }}
+  using: "composite"
+  steps:
+    - run: go get -v -t github.com/zimmski/go-mutesting/...
+      shell: bash
+    - run: $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: bash
+      env:
+        TARGETS: ${{ inputs.targets }}
+        BLACKLIST: ${{ inputs.blacklist-file }}
+        DISABLED: ${{ inputs.disabled-mutators }}
+        OUTPUT: ${{ inputs.output }}
 branding:
   icon: "cloud-lightning"
   color: "yellow"

@@ -1,0 +1,37 @@
+name: "go-mutesting-action"
+description: "Action for running Golang mutation tests"
+inputs:
+  version:
+    description: "Version of go-mutesting which will be used"
+    required: false
+    default: "latest"
+  targets:
+    description: "Targets which should be tested"
+    required: false
+    default: "./..."
+  blacklist-file:
+    description: "List of MD5 checksums of mutations which should be ignored"
+    required: false
+  disabled:
+    description: "List of disabled mutators"
+    required: false
+  output:
+    description: 'Configure output levels. Available values are "debug" and "verbose". Use "debug,verbose" for using both of them'
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - run: go get -t github.com/AntonStoeckl/go-mutesting/...@"$VERSION"
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+    - run: $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: bash
+      env:
+        TARGETS: ${{ inputs.targets }}
+        BLACKLIST: ${{ inputs.blacklist-file }}
+        DISABLED: ${{ inputs.disabled-mutators }}
+        OUTPUT: ${{ inputs.output }}
+branding:
+  icon: "cloud-lightning"
+  color: "yellow"

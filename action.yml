@@ -1,0 +1,27 @@
+name: "go-mutesting-action"
+description: "Action for running Golang mutation tests"
+inputs:
+  targets:
+    description: "Targets which should be tested"
+    required: false
+    default: "./..."
+  blacklist-file:
+    description: "List of MD5 checksums of mutations which should be ignored"
+    required: false
+  disabled-mutators:
+    description: "List of disabled mutators"
+    required: false
+  output:
+    description: 'Output level. Available values are "debug" and "verbose". Use "debug,verbose" for using both of them'
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    TARGETS: ${{ inputs.targets }}
+    BLACKLIST: ${{ inputs.blacklist-file }}
+    DISABLED: ${{ inputs.disabled-mutators }}
+    OUTPUT: ${{ inputs.output }}
+branding:
+  icon: "cloud-lightning"
+  color: "yellow"

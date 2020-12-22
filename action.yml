@@ -17,7 +17,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: go get -v -t github.com/zimmski/go-mutesting/...
+    - run: go get -v -t github.com/AntonStoeckl/go-mutesting/...
       shell: bash
     - run: $GITHUB_ACTION_PATH/entrypoint.sh
       shell: bash

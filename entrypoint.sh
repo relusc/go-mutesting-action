@@ -26,5 +26,9 @@ fi
 cmd=$(echo "$cmd" | xargs)
 
 # Run go-mutesting
-echo "Will run mutation tests with $cmd on $TARGETS"
+if [ -n "$cmd" ]; then
+    echo "Submitted options are $cmd"
+fi
+echo "Will run mutation tests on $TARGETS"
+
 go-mutesting "$TARGETS" "$cmd"

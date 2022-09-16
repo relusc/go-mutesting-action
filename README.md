@@ -6,7 +6,7 @@ See the repository's [README](https://github.com/AntonStoeckl/go-mutesting/blob/
 
 ## Usage in workflow
 
-NOTE: Requires Golang to be set up in your workflow.
+**NOTE**: Requires Golang to be set up in your workflow.
 
 ```yaml
 ...

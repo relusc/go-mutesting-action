@@ -4,9 +4,20 @@ Runs [https://github.com/AntonStoeckl/go-mutesting](https://github.com/AntonStoe
 
 See the repository's [README](https://github.com/AntonStoeckl/go-mutesting/blob/master/README.md) for details about the usage of `go-mutesting`.
 
+## Contributions
+
+Contributions are very welcome! If you find anything that can be done better, anything that's missing or have general questions/issues feel free to open an [issue](https://github.com/relusc/go-mutesting-action/issues) or file in a [pull request](https://github.com/relusc/go-mutesting-action/pulls).
+
 ## Usage in workflow
 
+**NOTE**: Requires Golang to be set up in your workflow.
+
 ```yaml
+...
+- name: Setup Go
+  uses: actions/setup-go@v3
+  with:
+    go-version: <version>
 ...
 - name: Golang mutation testing
   uses: rescDev/go-mutesting-action@<version>
